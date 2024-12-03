@@ -48,7 +48,6 @@ router.post('/newuser', async (req, res) => {
         res.status(201).json({ message: 'User created successfully', user: newUser });
     } catch (error) {
         console.error('Error creating new user:', error);
-        // res.status(500).json({ message: 'Server error', error });
     }
 
 });
@@ -62,7 +61,7 @@ router.get('/allusers', async (req, res) => {
      const Users = await User.find();
      res.status(200).json(Users)
     } catch (error) {
-     res.status(500).json({ error: e.message });
+     res.status(500).json({ error: error.message });
     }
    
    });
@@ -83,7 +82,6 @@ router.get('/user/:id', async (req, res) => {
         res.status(200).json({ user });
     } catch (error) {
         console.error('Error getting user:', error);
-        // res.status(500).json({ message: 'Server error', error });
     }
   
 });

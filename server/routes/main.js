@@ -3,11 +3,6 @@ const router = express.Router();
 
 const Post = require('../models/Post');
 
-//routes
-// router.get('', (req, res) => {
-//     res.send("Welcome to the API.");
-//   });
-
  //Inserting initial data to Blog DB
  function insertPostData(){
     Post.insertMany([
@@ -91,7 +86,7 @@ router.get('/allposts', async (req, res) => {
     const Posts = await Post.find();
     res.status(200).json(Posts)
    } catch (error) {
-    res.status(500).json({ error: e.message });
+    res.status(500).json({ error: error.message });
    }
   
   });
