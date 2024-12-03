@@ -17,6 +17,7 @@ app.get('', (req, res) => {
 
 app.use('/posts', require('./server/routes/main'));
 app.use('/users', require('./server/routes/admin'));
+app.use('/comments', require('./server/routes/comments'));
 
 // Global error handling
 app.use((err, _req, res, next) => {

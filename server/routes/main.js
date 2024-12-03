@@ -116,25 +116,6 @@ router.get('/post/:id', async (req, res) => {
 });
 
 
-// deleting a post based on id
-//http://localhost:5000/posts/post/:id/delete
-//eg: http://localhost:5000/posts/post/674e3f79022de88c22be7fee/delete
-router.delete('/post/:id/delete', async (req, res) => {
-    const { id: postId } = req.params;
-    try {
-        const deletePost = await Post.findByIdAndDelete(postId);
-
-        if (!deletePost) {
-            return res.status(404).json({ error: 'Post not found' });
-        }
-
-         res.status(200).json({ message: 'Post deleted', post: deletePost });
-        } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-
 //Update a post based on id
 // http://localhost:5000/posts/post/:id/update
 //http://localhost:5000/posts/post/674cbe166578d6257f403193/update
@@ -156,9 +137,27 @@ router.put('/post/:id/update', async (req, res) => {
         if (!updatedPost) {
             return res.status(404).json({ error: 'Post not found' });
         }
+         res.status(200).json({ message: 'Post updated', post: updatedPost });
+        } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
 
-         res.status(200).json({ message: 'Post updated successfully', post: updatedPost });
-    } catch (error) {
+
+// deleting a post based on id
+//http://localhost:5000/posts/post/:id/delete
+//eg: http://localhost:5000/posts/post/674e3f79022de88c22be7fee/delete
+router.delete('/post/:id/delete', async (req, res) => {
+    const { id: postId } = req.params;
+    try {
+        const deletePost = await Post.findByIdAndDelete(postId);
+
+        if (!deletePost) {
+            return res.status(404).json({ error: 'Post not found' });
+        }
+
+         res.status(200).json({ message: 'Post deleted', post: deletePost });
+        } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
