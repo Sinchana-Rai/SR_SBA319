@@ -42,6 +42,12 @@ router.post('/newuser', async (req, res) => {
     try {
         const { username, password } = req.body;
 
+         //Simple validation to check if the username provided is a string
+        if (typeof username !== 'string') {  
+            return res.status(400).json({ message: 'Username must be a string' });
+        }
+        // end validation
+        
         const newUser = new User({ username, password });
         await newUser.save();
 

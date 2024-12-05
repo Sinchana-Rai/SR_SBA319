@@ -55,7 +55,7 @@ const Post = require('../models/Post');
 
   
 //Post new blog data
-
+//http://localhost:5000/posts/post
 router.post('/post', async (req, res) => {
 
     const title = req.body.title;
